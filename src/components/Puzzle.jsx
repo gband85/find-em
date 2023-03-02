@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
 import { Charbox, Overlay } from './Layout';
@@ -37,6 +37,15 @@ const Puzzle = () => {
     display: "none",
   });
   const [selection, setSelection] = useState();
+    //Check on every render if all characters are found
+    useEffect(()=>{
+      if (puzzle.chars.every(char=>char.found===true)){
+        setGameOver(true)
+        setOverlayDisplay(true)
+        //clearTimeout(trackTimeout)
+        //setTimeElapsed()
+      }
+    },[puzzle.chars])
   const openContextMenu=(e)=>{
     setBoxStyle({
       ...boxStyle,
