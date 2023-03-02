@@ -1,14 +1,10 @@
 import localforage from "localforage";
-import { matchSorter } from "match-sorter";
-import sortBy from "sort-by";
-import ps3 from "../images/pierre-roussel-ps3-phone3.jpg";
-import wii from "../images/pierre-roussel-wii-phone3.jpg";
-import snes from "../images/pierre-roussel-snes-phone3-us.jpg";
-import { title } from "process";
+import ps3 from "../assets/pierre-roussel-ps3-phone3.jpg";
+import wii from "../assets/pierre-roussel-wii-phone3.jpg";
+import snes from "../assets/pierre-roussel-snes-phone3-us.jpg";
 
 export async function resetPuzzle(puzzleTitle) {
 
-    await fakeNetwork(`puzzle:${title}`);
     let puzzles = await localforage.getItem("puzzles");
     let puzzle=puzzles.find((puzzle)=>{
      if (puzzle.title===puzzleTitle) {
@@ -66,8 +62,7 @@ export async function resetPuzzles() {
   }])
 }
 
-export async function getPuzzles(query) {
-  await fakeNetwork(`getPuzzles:${query}`);
+export async function getPuzzles() {
   let puzzles = await localforage.getItem("puzzles");
 
   if (!puzzles) await resetPuzzles();
@@ -85,7 +80,6 @@ export async function getPuzzles(query) {
 // }
 
 export async function getPuzzle(title) {
-  await fakeNetwork(`puzzle:${title}`);
   let puzzles = await localforage.getItem("puzzles");
   console.log({puzzles});
   let puzzle = puzzles.find((puzzle) => puzzle.title === title);
@@ -93,7 +87,6 @@ export async function getPuzzle(title) {
 }
 
 export async function updateChar(puzzleTitle, charName) {
-  await fakeNetwork(`puzzle:${title}`);
   let puzzles = await localforage.getItem("puzzles");
   let puzzle=puzzles.find((puzzle)=>{
    if (puzzle.title===puzzleTitle) {
