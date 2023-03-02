@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useLoaderData } from 'react-router-dom';
+import GameTimer from './GameTimer';
+import { Charbox, Overlay } from './Layout';
 import { getPuzzle } from './puzzles';
 
+
 export async function puzzleLoader({ params }) {
-  console.log(params);
-  return getPuzzle(params.puzzleTitle);
+ // console.log(params);
+  const puzzle=await getPuzzle(params.puzzleTitle)
+ console.log(puzzle);
+  
+  return puzzle;
 }
 
 const Puzzle = () => {
+  let puzzle=useLoaderData();
+  const [overlayDisplay, setOverlayDisplay] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [timeElapsed,setTimeElapsed] = useState(0)
+  const [boxStyle, setBoxStyle] = useState({
+    left: "",
+    top: "",
+    display: "none",
+  });
+  const [selection, setSelection] = useState();
+const  handleClick=()=>{
+
+}
+ // console.log(puzzle);
   return (
     <>
-      {" "}
+      
       <div className="puzzle">
       gameOver ?  <Overlay overlayDisplay={overlayDisplay} /> : null
 
@@ -40,7 +61,7 @@ const Puzzle = () => {
 
           {puzzle.chars.map((char) => {
             return (
-              <CharBox
+              <Charbox
                 key={char.name}
                 char={char}/>
             );
