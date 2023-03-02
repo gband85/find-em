@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
 import { Charbox, Overlay } from './Layout';
-import { getPuzzle } from './puzzles';
+import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 
 
 export async function puzzleLoader({ params }) {
@@ -13,8 +13,21 @@ export async function puzzleLoader({ params }) {
   return puzzle;
 }
 
+async function findChar(params) {
+  console.log(params);
+  return updateChar(params.title, params.char);
+  //return {result};
+}
+async function reset(params) {
+
+await resetPuzzle(params)
+}
+
 const Puzzle = () => {
-  let puzzle=useLoaderData();
+  //let puzzle=useLoaderData();
+  // use state instead of trying to reload data from loader 
+  //data will be updated after state is set
+  const [puzzle, setPuzzle] = useState(useLoaderData())
   const [overlayDisplay, setOverlayDisplay] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [timeElapsed,setTimeElapsed] = useState(0)
@@ -24,15 +37,93 @@ const Puzzle = () => {
     display: "none",
   });
   const [selection, setSelection] = useState();
-const  handleClick=()=>{
+  const openContextMenu=(e)=>{
+    setBoxStyle({
+      ...boxStyle,
+      left: `${(e.pageX / e.target.width) * 100}%`,
+      top: `${((e.pageY-130) / e.target.height) * 100}%`,
+      display: "block",
+    });
+  }
+  const closeContextMenu=()=>{
+      setBoxStyle({ ...boxStyle, left: "", top: "", display: "none" });
+  }
+  //check if clicked location is a character
+  function checkForChar(e) {
+    function isAChar(element) {
+      console.log(element);
+      console.log(e.pageX / e.target.width*100);
+  //is clicked location within a character's bounding box?
+      if (
+        ((e.pageX / e.target.width) * 100) >= element.x1 &&
+        ((e.pageX / e.target.width) * 100) <= element.x2 &&
+        (((e.pageY - 143) / e.target.height) * 100) >= element.y1 &&
+        (((e.pageY - 143) / e.target.height) * 100) <= element.y2
+      ) {
+        console.log(element.name);
+        return element;
+      }
+    }
+    if (puzzle.chars.find(isAChar)) {
+      //if so, set selection to character whose bounding box the clicked location is in
+      setSelection(puzzle.chars.find(isAChar).name);
+    } else {
+      setSelection(undefined);
+    }
+  }
+const  handleClick=(e)=>{
+ //  handle clicking on character name button
+ if (e.target.matches(".char button"))
 
+ {
+//Hide character list
+closeContextMenu()
+ console.log(e);
+ if (e.target.dataset["name"] === selection) {
+   //console.log(submit);
+   let newchars = puzzle.chars.map((char) => {
+     if (char.name === selection) {
+       return { ...char, found: true };
+     }
+     return char;
+   });
+   console.log("found" + selection);
+   
+   setPuzzle({ ...puzzle, chars: newchars });
+   findChar({ title: puzzle.title, char: selection });
+
+ } else {
+   console.log("try again!");
+ }
+ setSelection(undefined);
+
+
+ }
+ else if (e.target.matches(".image"))
+ {
+     console.log(e);
+checkForChar(e)
+openContextMenu(e)
+ }
+ else if (e.target.matches('.reset')) {
+
+   let newchars2 = puzzle.chars.map((char) => {
+
+     return { ...char, found: false }
+   });
+   setPuzzle({ ...puzzle, chars: newchars2 });
+   //ref.current.startTimer();
+   reset(puzzle.title)
+   setGameOver(false)
+   setOverlayDisplay(false)
+ }
 }
  // console.log(puzzle);
   return (
     <>
       
       <div className="puzzle">
-      gameOver ?  <Overlay overlayDisplay={overlayDisplay} /> : null
+      {gameOver ?  <Overlay/> : null}
 
         
         <div className="puzzle-header">
