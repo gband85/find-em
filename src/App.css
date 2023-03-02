@@ -1,42 +1,293 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+.overlay {
+  height: 100%;
+  width: 100%;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+  position: absolute;
+  background-color: black;
+  opacity: 0.7;
+  z-index: 102;
+}
+.game-over {
+  display: flex;
+  position:absolute;
+  background-color: white;
+  /* top:0; */
+  gap: 30px;
+  /* align-items: center; */
+padding: 30px 50px 30px 50px;
+  z-index:103;
+  left:0;
+  flex-direction: column;
+  font-size: x-large;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  right: 0;
+}
+.game-over button {
+ padding:  10px 30px;
+font-size: x-large;
+}
+.puzzles {
+  display: flex; 
+  /* flex-direction: column; */
+  gap: 20px;
+}
+.puzzle-link img {
+  width: 60%;
+}
+.puzzle-link h1 {
+  position: absolute;
+}
+.puzzle-link div {
+  display: flex;
+  justify-content: center;
+}
+/* .puzzle img {
+  aspect-ratio: auto;
+  width: 30%;
+} */
+.container {
+  display: flex;
+
+ flex-direction: column;
+  justify-content: center;
+}
+.find-list {
+position: absolute;
+background-color: black;
+white-space: nowrap;
+/* z-index: 300; */
+color: white;
+}i
+.find-list ul {
+  list-style: none;
+/* text-overflow: clip; */
+}
+.find-list button {
+  padding: 10px ;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  /* background-color: #3e3940; */
+  
+  /* color: white; */
+   /* text-decoration-line: line-through; */
+}
+.find-list button:hover {
+  /* background-color: rgb(96,96,96); */
+}
+.find-list button:disabled {
+  /* background-color: black; */
+ 
+}
+.found {
+  opacity: 0.6;
+}
+.char-box {
+  position: absolute;
+  /* left: 82.3%;
+top: 49%; */
+/* width: 53px;
+height: 60px; */
+pointer-events: none;
+}
+.char-overlay {
+  /* z-index: 55; */
+  background-color: green;
+  position: absolute;
+ /* width: inherit; */
+ height: 100%;
+ /* width: 99.9999999vw; */
+  /* min-height: 997px; */
+  /* min-width: 460px; */
+  display: flex;
+}
+.puzzle img {
+  /* background: url(127.0.0.1:3002//static/media/pierre-roussel-ps3-phone2.83776263b48a9533cc22.jpg); */
+  /* position: absolute; */
+  /* width: 1080px;
+height: 2340px; */
+  /* z-index: 54; */
+  height: auto;
+}
+.puzzle {
+   /* width: 100vw; */
+   /* min-width: 1080px; */
+   /* min-width: 497px; */
+/* max-height: 2340px; */
+flex-direction: column;
+   /* background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat; */
+        /* overflow: hidden; */
+cursor: crosshair;
+   position: relative;
+  /* height: 100vh;   */
+   display: flex;
+  justify-content: center; 
+
+/* width: 1080px;
+height: 2340px; */
+}
+.puzzle-header {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
+}
+.puzzle-body {
+  position: relative;
+}
+.target {
+  border:2px red dashed;
+  background: transparent;
+  width:64px;
+  height:64px;
+  position:absolute;
+  pointer-events: none;
+  border-radius: 50%;
+}
+.nav__menu {
+  color: white;
+  background-color: #006699;
+  
+  transition: transform .5s; 
+  transform: translateX(-100%);
+  width: 300px;
+  /* position: fixed; */
+  /* z-index: 50; */
+  height: 100vh;
+  display: block;
   }
-  to {
-    transform: rotate(360deg);
+  .nav-link {
+    color: white;
+    text-decoration: none;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .nav-link:hover {
+    text-decoration: underline;
   }
+  .nav__menu.show {
+  transform: translateX(0);
+  }
+  .nav__menu__list {
+  list-style: none;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 30px;
+  }
+  .nav__menu__list a:hover, .navbar__nav__list a:hover {
+  text-decoration: underline;
+  }
+  .navbar {
+    display: flex;
+    /* position:fixed; */
+    padding: 20px;
+    color: #fff;
+    /* width: 100vw; */
+    background-color: #006699;
+    justify-content: space-between;
+    font-size: 28px;
+    /* z-index: 20; */
+  }
+  .navbar__brand {
+    font-size: 2rem;
+    color: #fff;
+  }
+  .navbar__brand a {
+    text-decoration: none;
+    font-size: 28px;
+  }
+  .navbar__brand a:visited {
+    color: white;
+  }
+  .navbar__nav {
+    display: none;
+  }
+  .navbar__nav__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 28px;
+  }
+  .menu__btn {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    background-color:transparent;
+  justify-self: flex-end;
+  border: none;
+  outline: none;
+  }
+  @media  (min-width:768px){
+    .navbar__nav {
+  display: block;
+    }
+  .menu__btn {
+  display: none;
+  }
+  .nav__menu {
+  display: none;
+  }
+  }
+  .close__menu {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  
+  }
+  .close__menu__btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  }
+  .close__menu__btn:hover {
+  color: rgb(205, 205, 205);
+  }
+  .cart-icon {
+    z-index: 5;
+    background-color: red;
+    height: fit-content;
+  }
+.nav-link-cart {
+  text-decoration: none;
+  /* height: min-content; */
+  background-color: transparent;
+  border: none;
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  .badge {
+    text-decoration: none;
+    padding: 0 3px;
+    background-color: #5c3996;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 100%;
+    position: absolute;
+    text-align: center;
+    top: 18px;
+    right: 20px;
+    width: fit-content;
+    /* z-index: 6; */
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+  }
