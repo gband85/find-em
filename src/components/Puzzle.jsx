@@ -140,18 +140,9 @@ openContextMenu(e)
           <button className="reset" onClick={handleClick} type="button">Reset</button>
           <GameTimer gameOver={gameOver} setTimeElapsed={setTimeElapsed}/>
         </div>
-        <div
-          className="game-over"
-          style={gameOver ? { display: "flex" } : { display: "none" }}
-        >
-          <h1>Congratulations! You finished in {timeElapsed}</h1>
-          <button className="reset"
-            onClick={handleClick}
-            type="button"
-          >
-            Try Again
-          </button>
-        </div>
+        {
+       gameOver ? <GameOver/> : null;
+        }
         <div className="puzzle-body">
           <img
             src={puzzle.source}
