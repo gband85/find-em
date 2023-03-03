@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
-import { Charbox, Overlay } from './Layout';
+import { Charbox } from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
+import GameOver from './GameOver';
 
 
 export async function puzzleLoader({ params }) {
@@ -132,7 +133,7 @@ openContextMenu(e)
     <>
       
       <div className="puzzle">
-      {gameOver ?  <Overlay/> : null}
+      {gameOver ?  <div className="overlay"></div> : null}
 
         
         <div className="puzzle-header">
@@ -141,8 +142,7 @@ openContextMenu(e)
           <GameTimer gameOver={gameOver} setTimeElapsed={setTimeElapsed}/>
         </div>
         {
-       gameOver ? <GameOver/> : null;
-        }
+       gameOver ? <GameOver/> : null        }
         <div className="puzzle-body">
           <img
             src={puzzle.source}
@@ -151,20 +151,18 @@ openContextMenu(e)
           />
 
           {puzzle.chars.map((char) => {
+            if (char.found === true ) { 
             return (
-              <Charbox
+                <Charbox
                 key={char.name}
-                char={char}/>
-            );
+                char={char}/>   )}  
+                else
+                return null            
           })}
 
           <div
             className="find-list"
-            style={{
-              left: `${boxStyle.left}`,
-              top: `${boxStyle.top}`,
-              display: boxStyle.display,
-            }}
+            style={boxStyle}
           >
             <ul>
               {puzzle.chars.map((char) => {
