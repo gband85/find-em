@@ -29,13 +29,11 @@ element: <Home/>
   path: "puzzles",
   element: <PuzzleList/>,
   loader: puzzleListLoader,
-  children: [
-    {
-      path: ":puzzleTitle",
-      element: <Puzzle/>,
+},
+{
+  path: "/puzzles/:puzzleTitle",
+  element: <Puzzle/>,
 loader: puzzleLoader
-    }
-  ]
 }
       ]
     }
