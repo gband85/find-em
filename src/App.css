@@ -112,9 +112,7 @@ pointer-events: none;
 .puzzle img {
   /* background: url(127.0.0.1:3002//static/media/pierre-roussel-ps3-phone2.83776263b48a9533cc22.jpg); */
   /* position: absolute; */
-  /* width: 1080px;
-height: 2340px; */
-  /* z-index: 54; */
+width: 100%;
   height: auto;
 }
 .puzzle {
