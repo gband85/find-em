@@ -1,7 +1,7 @@
-const GameOver=({timeElapsed,handleClick}) =>{
+const GameOver=({timeDisplay,handleClick}) =>{
     return <div
       className="game-over">
-      <h1>Congratulations! You finished in {timeElapsed}</h1>
+      <h1>Congratulations! You finished in {timeDisplay}</h1>
       <button className="reset"
         onClick={handleClick}
         type="button"

@@ -16,7 +16,7 @@ const GameTimer = (props) => {
         props.setTimeElapsed(timeElapsed)
          setMinutes(Math.floor(timeElapsed / 1000 / 60))
              setSeconds(timeElapsed/1000%60)
-     
+     props.setTimeDisplay(time_left)
    }
       let  tick;
       if (props.gameOver) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
-import { Charbox } from "./Charbox";
+import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 import GameOver from './GameOver';
 
@@ -31,7 +31,7 @@ const Puzzle = () => {
   const [puzzle, setPuzzle] = useState(useLoaderData())
   const [overlayDisplay, setOverlayDisplay] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [timeElapsed,setTimeElapsed] = useState(0)
+  const [timeDisplay,setTimeDisplay] = useState(0)
   const [boxStyle, setBoxStyle] = useState({
     left: "",
     top: "",
@@ -139,10 +139,10 @@ openContextMenu(e)
         <div className="puzzle-header">
           <h1>{puzzle.title}</h1>
           <button className="reset" onClick={handleClick} type="button">Reset</button>
-          <GameTimer gameOver={gameOver} setTimeElapsed={setTimeElapsed}/>
+          <GameTimer gameOver={gameOver} setTimeDisplay={setTimeDisplay}/>
         </div>
         {
-       gameOver ? <GameOver/> : null        }
+       gameOver ? <GameOver timeDisplay={timeDisplay} handleClick={handleClick}/> : null        }
         <div className="puzzle-body">
           <img
             src={puzzle.source}
