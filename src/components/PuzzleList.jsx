@@ -3,9 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { getPuzzles } from './puzzles';
 
 export async function puzzleListLoader() {
-  //await resetPuzzles();
   const puzzles = await getPuzzles();
-  console.log({ puzzles });
   return { puzzles };
 }
 
