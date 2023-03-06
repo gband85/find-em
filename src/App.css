@@ -65,7 +65,7 @@ background-color: black;
 white-space: nowrap;
 /* z-index: 300; */
 color: white;
-}i
+}
 .find-list ul {
   list-style: none;
 /* text-overflow: clip; */
@@ -136,9 +136,17 @@ height: 2340px; */
 }
 .puzzle-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 60px;
   align-items: center;
+  gap: 50%;
+}
+.title{
+/* text-align: center; */
+/* justify-self: center; */
+}
+#clock {
+  justify-self: right;
 }
 .puzzle-body {
   position: relative;
