@@ -81,7 +81,6 @@ export async function getPuzzles() {
 
 export async function getPuzzle(title) {
   let puzzles = await localforage.getItem("puzzles");
-  console.log({puzzles});
   let puzzle = puzzles.find((puzzle) => puzzle.title === title);
   return puzzle ?? null;
 }
