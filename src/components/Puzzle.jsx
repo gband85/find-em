@@ -24,11 +24,10 @@ async function reset(params) {
 await resetPuzzle(params)
 }
 
-const Puzzle = () => {
+const Puzzle = ({puzzle,setPuzzle}) => {
   //let puzzle=useLoaderData();
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
-  const [puzzle, setPuzzle] = useState(useLoaderData())
   const [overlayDisplay, setOverlayDisplay] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [timeDisplay,setTimeDisplay] = useState(0)
