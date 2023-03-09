@@ -137,7 +137,6 @@ openContextMenu(e)
         
         <div className="puzzle-header">
           <h1>{puzzle.title}</h1>
-          <button className="reset" onClick={handleClick} type="button">Reset</button>
           <GameTimer gameOver={gameOver} setTimeDisplay={setTimeDisplay}/>
         </div>
         {
