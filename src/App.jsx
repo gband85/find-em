@@ -44,6 +44,7 @@ function App() {
       { name: "Donatello", shortName: "donatello", pic: "donatello",found:false,x1:25.57,y1:65.32,x2:36.5,y2:69.03 },
     ],
   }])
+  const [currentPuzzle, setCurrentPuzzle] = useState("")
   const router = createBrowserRouter([
   
 {
