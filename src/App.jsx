@@ -13,6 +13,9 @@ import Home from './components/Home';
 import PuzzleList, { puzzleListLoader } from './components/PuzzleList';
 import Puzzle, { puzzleLoader } from './components/Puzzle';
 import { getPuzzle, getPuzzles } from './components/puzzles';
+import ps3 from "./assets/pierre-roussel-ps3-phone3.jpg";
+import wii from "./assets/pierre-roussel-wii-phone3.jpg";
+import snes from "./assets/pierre-roussel-snes-phone3-us.jpg";
 
 function App() {
  const [puzzles,setPuzzles]= useState([ {
