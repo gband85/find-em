@@ -14,12 +14,12 @@ const Root = (props) => {
           <ul className="navbar__nav__list">
             <li className="menu-item">
               <Link to="/" className="nav-link">
-                Home
+                Info
               </Link>
             </li>
             <li className="menu-item">
               <Link to="/puzzles" className="nav-link">
-                Puzzles
+                Leaderboard
               </Link>
             </li>
           </ul>
