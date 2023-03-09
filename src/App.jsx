@@ -52,18 +52,12 @@ function App() {
       errorElement:<ErrorPage/>,
       children: [
 {
-path: "/",
-element: <Home/>
+  path: "/",
+  element: <PuzzleList puzzles={puzzles} setCurrentPuzzle={setCurrentPuzzle}/>,
 },
 {
-  path: "puzzles",
-  element: <PuzzleList/>,
-  loader: puzzleListLoader,
-},
-{
-  path: "/puzzles/:puzzleTitle",
-  element: <Puzzle/>,
-loader: puzzleLoader
+  path: "puzzle",
+  element: <Puzzle puzzle={currentPuzzle} />,
 }
       ]
     }
