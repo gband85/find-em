@@ -7,9 +7,7 @@ export async function puzzleListLoader() {
   return { puzzles };
 }
 
-const PuzzleList = () => {
-   // const {puzzles} = useContext(store).state;
-   const { puzzles } = useLoaderData();
+const PuzzleList = ({puzzles,setCurrentPuzzle}) => {
    useEffect(()=>{
     // console.log(globalState);
    })
@@ -21,13 +19,13 @@ const PuzzleList = () => {
            <>
              <Link
                className="puzzle-link"
-               to={`/puzzles/${puzzle.title}`}
-               
+               to={"/puzzle"}
+               onClick={()=>setCurrentPuzzle(puzzle)}
              >
-               <div style={{ border: "1px solid red" }}>
+               {/* <div style={{ border: "1px solid red" }}> */}
                  <h1>{puzzle.title}</h1>
                  <img src={puzzle.source} />
-               </div>
+               {/* </div> */}
              </Link>
            </>
          );
