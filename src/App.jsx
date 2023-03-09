@@ -49,7 +49,7 @@ function App() {
   const router = createBrowserRouter([
   
 {
-      element:<Root />, 
+      element:<Root puzzle={currentPuzzle}/>, 
       errorElement:<ErrorPage/>,
       children: [
 {
