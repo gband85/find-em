@@ -134,11 +134,6 @@ openContextMenu(e)
       <div className="puzzle">
       {gameOver ?  <div className="overlay"></div> : null}
 
-        
-        <div className="puzzle-header">
-          <h1>{puzzle.title}</h1>
-          <GameTimer gameOver={gameOver} setTimeDisplay={setTimeDisplay}/>
-        </div>
         {
        gameOver ? <GameOver timeDisplay={timeDisplay} handleClick={handleClick}/> : null        }
         <div className="puzzle-body">
