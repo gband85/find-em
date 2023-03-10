@@ -20,7 +20,10 @@ const PuzzleList = ({puzzles,setCurrentPuzzle}) => {
              <Link
                className="puzzle-link"
                to={"/puzzle"}
-               onClick={()=>setCurrentPuzzle(puzzle)}
+               onClick={()=>{
+                setCurrentPuzzle(puzzle)
+                setShowClock(true)
+               }}
              >
                {/* <div style={{ border: "1px solid red" }}> */}
                  <h1>{puzzle.title}</h1>
