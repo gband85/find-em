@@ -16,7 +16,7 @@ const GameTimer = (props) => {
        
         setTimeElapsed(timeElapsed+1000)
         setHours(Math.floor(timeElapsed/1000/60/60%24))
-         setMinutes(Math.floor(timeElapsed / 1000 / 60))
+         setMinutes(Math.floor(timeElapsed / 1000 / 60 % 60))
              setSeconds(timeElapsed/1000%60)
      props.setTimeDisplay(time_left)
    }
