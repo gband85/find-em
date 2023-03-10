@@ -46,19 +46,22 @@ function App() {
     ],
   }])
   const [currentPuzzle, setCurrentPuzzle] = useState("")
+  const [gameOver, setGameOver] = useState(false);
+  const [timeDisplay,setTimeDisplay] = useState(0)
+  const [showClock,setShowClock]=useState(false)
   const router = createBrowserRouter([
   
 {
-      element:<Root puzzle={currentPuzzle}/>, 
+      element:<Root puzzle={currentPuzzle} showClock={showClock} setPuzzle={setCurrentPuzzle} gameOver={gameOver} setTimeDisplay={setTimeDisplay}/>, 
       errorElement:<ErrorPage/>,
       children: [
 {
   path: "/",
-  element: <PuzzleList puzzles={puzzles} setCurrentPuzzle={setCurrentPuzzle}/>,
+  element: <PuzzleList puzzles={puzzles} setCurrentPuzzle={setCurrentPuzzle} setShowClock={setShowClock}/>,
 },
 {
   path: "puzzle",
-  element: <Puzzle puzzle={currentPuzzle} setPuzzle={setCurrentPuzzle}/>,
+  element: <Puzzle puzzle={currentPuzzle} setPuzzle={setCurrentPuzzle} setGameOver={setGameOver} gameOver={gameOver} timeDisplay={timeDisplay}/>,
 }
       ]
     }
