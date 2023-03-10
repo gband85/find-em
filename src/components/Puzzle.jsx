@@ -24,13 +24,11 @@ async function reset(params) {
 await resetPuzzle(params)
 }
 
-const Puzzle = ({puzzle,setPuzzle}) => {
+const Puzzle = ({puzzle,setPuzzle,gameOver,setGameOver, timeDisplay}) => {
   //let puzzle=useLoaderData();
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
   const [overlayDisplay, setOverlayDisplay] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
-  const [timeDisplay,setTimeDisplay] = useState(0)
   const [boxStyle, setBoxStyle] = useState({
     left: "",
     top: "",
@@ -40,7 +38,7 @@ const Puzzle = ({puzzle,setPuzzle}) => {
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
-        setGameOver(true)
+       setGameOver(true)
         setOverlayDisplay(true)
         //clearTimeout(trackTimeout)
         //setTimeElapsed()
