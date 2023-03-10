@@ -7,7 +7,7 @@ export async function puzzleListLoader() {
   return { puzzles };
 }
 
-const PuzzleList = ({puzzles,setCurrentPuzzle}) => {
+const PuzzleList = ({puzzles,setCurrentPuzzle,setShowClock}) => {
    useEffect(()=>{
     // console.log(globalState);
    })
