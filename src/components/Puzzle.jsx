@@ -4,6 +4,7 @@ import GameTimer from './GameTimer';
 import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 import GameOver from './GameOver';
+import { Image } from 'react-bootstrap';
 
 
 export async function puzzleLoader({ params }) {
@@ -134,10 +135,11 @@ openContextMenu(e)
 
         {
        gameOver ? <GameOver timeDisplay={timeDisplay} handleClick={handleClick}/> : null        }
-        <div className="puzzle-body">
-          <img
+        {/* <div className="puzzle-body"> */}
+          <Image
+          
             src={puzzle.source}
-            className="image"
+            className="imag5e"
             onClick={handleClick}
           />
 
@@ -176,7 +178,7 @@ openContextMenu(e)
               })}
             </ul>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </>
   )
