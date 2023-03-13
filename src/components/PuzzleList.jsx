@@ -25,10 +25,14 @@ const PuzzleList = ({puzzles,setCurrentPuzzle,setShowClock}) => {
                 setShowClock(true)
                }}
              >
-               {/* <div style={{ border: "1px solid red" }}> */}
-                 <h1>{puzzle.title}</h1>
+               <div className='card'>
+                 {/* <h1>{puzzle.title}</h1> */}
+                 <div className="card-image">
+                 <figure className="image">
                  <img src={puzzle.source} />
-               {/* </div> */}
+</figure>
+                 </div>
+               </div>
              </Link>
            </>
          );
