@@ -4,7 +4,6 @@ import GameTimer from './GameTimer';
 import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 import GameOver from './GameOver';
-import { Image } from 'react-bootstrap';
 
 
 export async function puzzleLoader({ params }) {
@@ -49,7 +48,7 @@ const Puzzle = ({puzzle,setPuzzle,gameOver,setGameOver, timeDisplay}) => {
     setBoxStyle({
       ...boxStyle,
       left: `${(e.pageX / e.target.width) * 100}%`,
-      top: `${((e.pageY-130) / e.target.height) * 100}%`,
+      top: `${((e.pageY-90) / e.target.height) * 100}%`,
       display: "block",
     });
   }
@@ -65,8 +64,8 @@ const Puzzle = ({puzzle,setPuzzle,gameOver,setGameOver, timeDisplay}) => {
       if (
         ((e.pageX / e.target.width) * 100) >= element.x1 &&
         ((e.pageX / e.target.width) * 100) <= element.x2 &&
-        (((e.pageY - 143) / e.target.height) * 100) >= element.y1 &&
-        (((e.pageY - 143) / e.target.height) * 100) <= element.y2
+        (((e.pageY - 98) / e.target.height) * 100) >= element.y1 &&
+        (((e.pageY - 98) / e.target.height) * 100) <= element.y2
       ) {
         console.log(element.name);
         return element;
@@ -113,7 +112,7 @@ closeContextMenu()
 checkForChar(e)
 openContextMenu(e)
  }
- else if (e.target.matches('.reset')) {
+ else if (e.target.matches('#reset')) {
 
    let newchars2 = puzzle.chars.map((char) => {
 
@@ -136,10 +135,10 @@ openContextMenu(e)
         {
        gameOver ? <GameOver timeDisplay={timeDisplay} handleClick={handleClick}/> : null        }
         {/* <div className="puzzle-body"> */}
-          <Image
+          <img
           
             src={puzzle.source}
-            className="imag5e"
+            className="image"
             onClick={handleClick}
           />
 
