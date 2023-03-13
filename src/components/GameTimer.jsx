@@ -35,7 +35,7 @@ return ()=>  clearInterval(tick)
     })
   
   return (
-  <div id="clock">
+  <div id="clock" className='navbar-item'>
   
   {time_left}
                  
