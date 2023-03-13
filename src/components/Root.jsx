@@ -4,35 +4,47 @@ import GameTimer from "./GameTimer";
 const Root = (props) => {
   return (
     <>
-      <div className="navbar">
-        <h1 className="navbar__brand">
-          <Link to="/" onClick={()=>setPuzzle("")}>
+      <nav className="navbar is-info">
+        <div className="navbar-brand">
+          <Link to="/" className="navbar-item" onClick={()=>setPuzzle("")}>
             Find 'Em
           </Link>
-        </h1>
-        {props.puzzle ? <ul className="char-names">
-          {props.puzzle.chars.map(char=>{
-            return (
-              <h4>{char.name}</h4>
-            )
-          })}
-        </ul> : null}
-      {props.showClock ? <GameTimer gameOver={props.gameOver} setTimeDisplay={props.setTimeDisplay}/> : 
-        (<nav className="navbar__nav">
-          <ul className="navbar__nav__list">
-            <li className="menu-item">
-              <Link to="/" className="nav-link">
+        </div>
+        
+        <div className="navbar-menu">
+
+        <div className="navbar-start">
+
+       </div>
+          
+
+       <div className="navbar-end">
+        {props.puzzle ?    <div style={{zIndex:5000}} className="navbar-item">
+               {/* <a className="navbar-link">
+                Chars2
+               </a> */}
+               <ul  className="char-names">
+                 {props.puzzle.chars.map(char=>{
+                   return (
+                     <li className="navbar-ll">{char.name}</li>
+                   )
+                 })}
+               </ul> 
+              </div>: null}
+          {props.showClock ? <GameTimer gameOver={props.gameOver} setTimeDisplay={props.setTimeDisplay}/> : 
+             <>
+             <Link to="/info" className="navbar-item">
                 Info
               </Link>
-            </li>
-            <li className="menu-item">
-              <Link to="/puzzles" className="nav-link">
+            
+            
+              <Link to="/leaderboard" className="navbar-item" onClick={}>
                 Leaderboard
               </Link>
-            </li>
-          </ul>
-        </nav>)}
-      </div>
+              </>}
+          </div>
+        </div>
+      </nav>
       <div className="container">
         <Outlet />
       </div>
