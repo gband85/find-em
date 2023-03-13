@@ -16,6 +16,8 @@ import { getPuzzle, getPuzzles } from './components/puzzles';
 import ps3 from "./assets/pierre-roussel-ps3-phone3.jpg";
 import wii from "./assets/pierre-roussel-wii-phone3.jpg";
 import snes from "./assets/pierre-roussel-snes-phone3-us.jpg";
+import "bulma/css/bulma.min.css";
+import Leaderboard from './components/Leaderboard';
 
 function App() {
  const [puzzles,setPuzzles]= useState([ {
@@ -62,6 +64,10 @@ function App() {
 {
   path: "puzzle",
   element: <Puzzle puzzle={currentPuzzle} setPuzzle={setCurrentPuzzle} setGameOver={setGameOver} gameOver={gameOver} timeDisplay={timeDisplay}/>,
+},
+{
+  path: "leaderboard",
+  element: <Leaderboard/>,
 }
       ]
     }
