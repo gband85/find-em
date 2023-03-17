@@ -31,9 +31,19 @@ function App() {
       children: [
 {
   path: "/",
-  element: <PuzzleList puzzles={puzzles} setCurrentPuzzle={setCurrentPuzzle} setShowClock={setShowClock}/>,
+  element: <PuzzleList/>,
+  loader: async ()=>{
+   let puzzles=await getPuzzles()
+   return puzzles
+  }
 },
 {
+  path: "/puzzles/:puzzleTitle",
+  element: <Puzzle/>,
+  loader: async ({params})=>{
+    const puzzle=await getPuzzle(params.puzzleTitle)
+      return puzzle;
+  },
   id:"puzz",
 },
 {
