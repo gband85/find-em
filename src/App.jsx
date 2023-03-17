@@ -17,7 +17,7 @@ import ps3 from "./assets/pierre-roussel-ps3-phone3.jpg";
 import wii from "./assets/pierre-roussel-wii-phone3.jpg";
 import snes from "./assets/pierre-roussel-snes-phone3-us.jpg";
 import "bulma/css/bulma.min.css";
-import Leaderboard from './components/Leaderboard';
+import LeaderboardLayout from './components/LeaderboardLayout';
 
 function App() {
  
@@ -47,8 +47,22 @@ function App() {
   id:"puzz",
 },
 {
-  path: "leaderboard",
-  element: <Leaderboard/>,
+    path: "/leaderboard",
+  element: <LeaderboardLayout />,
+loader: async ()=>{
+  let puzzles=await getPuzzles()
+  return puzzles
+ },
+   children:[
+    {
+      path: '/leaderboard/:puzzleTitle',
+      element: <Leaderboard/>,
+   loader: async ({params})=>{
+    let scores = await getScores(params.puzzleTitle);
+    return scores;
+   },
+  }
+   ]
 }
       ]
     }
