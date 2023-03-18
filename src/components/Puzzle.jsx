@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLoaderData } from 'react-router-dom';
+import { redirect, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import GameTimer from './GameTimer';
 import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
@@ -9,25 +9,23 @@ import GameOver from './GameOver';
 export async function puzzleLoader({ params }) {
  // console.log(params);
   const puzzle=await getPuzzle(params.puzzleTitle)
- console.log(puzzle);
+//  console.log(puzzle);
   
   return puzzle;
 }
 
 async function findChar(params) {
-  console.log(params);
-  return updateChar(params.title, params.char);
-  //return {result};
+ await updateChar(params.title, params.char);
 }
 async function reset(params) {
-
 await resetPuzzle(params)
 }
 
-const Puzzle = ({puzzle,setPuzzle,gameOver,setGameOver, timeDisplay}) => {
-  //let puzzle=useLoaderData();
+const Puzzle = () => {
+  const [puzzle,setPuzzle]=useState(useLoaderData());
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
+  const [gameOver,setGameOver]=useState(false)
   const [overlayDisplay, setOverlayDisplay] = useState(false);
   const [boxStyle, setBoxStyle] = useState({
     left: "",
@@ -38,10 +36,7 @@ const Puzzle = ({puzzle,setPuzzle,gameOver,setGameOver, timeDisplay}) => {
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
-       setGameOver(true)
-        setOverlayDisplay(true)
-        //clearTimeout(trackTimeout)
-        //setTimeElapsed()
+        setGameOver(true)
       }
     },[puzzle.chars])
   const openContextMenu=(e)=>{
@@ -104,7 +99,6 @@ closeContextMenu()
  }
  setSelection(undefined);
 
-
  }
  else if (e.target.matches(".image"))
  {
@@ -121,8 +115,7 @@ openContextMenu(e)
    setPuzzle({ ...puzzle, chars: newchars2 });
    //ref.current.startTimer();
    reset(puzzle.title)
-   setGameOver(false)
-   setOverlayDisplay(false)
+    setGameOver(false)
  }
 }
  // console.log(puzzle);
@@ -133,7 +126,7 @@ openContextMenu(e)
       {gameOver ?  <div className="overlay"></div> : null}
 
         {
-       gameOver ? <GameOver timeDisplay={timeDisplay} handleClick={handleClick}/> : null        }
+       gameOver ? <GameOver handleClick={handleClick} title={puzzle.title}/> : null}
         {/* <div className="puzzle-body"> */}
           <img
           
@@ -183,4 +176,4 @@ openContextMenu(e)
   )
 }
 
-export default Puzzle
+export default Puzzle;
