@@ -7,23 +7,19 @@ export async function puzzleListLoader() {
   return { puzzles };
 }
 
-const PuzzleList = ({puzzles,setCurrentPuzzle,setShowClock}) => {
+const PuzzleList = () => {
    useEffect(()=>{
     // console.log(globalState);
    })
- 
+ const puzzles=useLoaderData()
    return (
      <div className="puzzles">
        {puzzles.map((puzzle) => {
          return (
            <>
              <Link
-               className="puzzle-link"
-               to={"/puzzle"}
-               onClick={()=>{
-                setCurrentPuzzle(puzzle)
-                setShowClock(true)
-               }}
+               className="puzzle-lin"
+               to={`/puzzles/${puzzle.title}`}
              >
                <div className='card'>
                  {/* <h1>{puzzle.title}</h1> */}
