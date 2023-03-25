@@ -1,47 +1,52 @@
-import { Outlet, Link } from "react-router-dom";
+import { forwardRef } from "react";
+import { Outlet, Link, useMatches, useRouteLoaderData } from "react-router-dom";
 import GameTimer from "./GameTimer";
 
 const Root = (props) => {
+  const data = useRouteLoaderData("puzzle");
   return (
+    
     <>
       <nav className="navbar is-info">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item" onClick={()=>setPuzzle("")}>
+          <Link to="/" className="navbar-item">
             Find 'Em
           </Link>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</a>
         </div>
-        
+
         <div className="navbar-menu">
+          <div className="navbar-start"></div>
 
-        <div className="navbar-start">
+          <div className="navbar-end">
+            {data ? (
+              <>
+                {" "}
+                
+                  
+                    {data.chars.map((char) => {
+                      return <div className="navbar-item">{char.name}</div>;
+                    })}
+                  
+                
 
-       </div>
-          
-
-       <div className="navbar-end">
-        {props.puzzle ?    <div style={{zIndex:5000}} className="navbar-item">
-               {/* <a className="navbar-link">
-                Chars2
-               </a> */}
-               <ul  className="char-names">
-                 {props.puzzle.chars.map(char=>{
-                   return (
-                     <li className="navbar-ll">{char.name}</li>
-                   )
-                 })}
-               </ul> 
-              </div>: null}
-          {props.showClock ? <GameTimer gameOver={props.gameOver} setTimeDisplay={props.setTimeDisplay}/> : 
-             <>
-             <Link to="/info" className="navbar-item">
-                Info
-              </Link>
-            
-            
-              <Link to="/leaderboard" className="navbar-item" onClick={}>
-                Leaderboard
-              </Link>
-              </>}
+              </>
+            ) : (
+              <>
+                <Link to="/info" className="navbar-item">
+                  Info
+                </Link>
+<Link to="/" className="navbar-item">Puzzles</Link>
+                <Link to="/leaderboard/PS3" className="navbar-item">
+                  Leaderboard
+                </Link>
+              </>
+            )}
+                            
           </div>
         </div>
       </nav>
