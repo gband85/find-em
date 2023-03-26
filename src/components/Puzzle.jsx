@@ -21,8 +21,11 @@ async function reset(params) {
 await resetPuzzle(params)
 }
 
-const Puzzle = () => {
-  const [puzzle,setPuzzle]=useState(useLoaderData());
+  const data=useRouteLoaderData('root')
+ // console.log(data);
+  const puzzleData=useLoaderData()
+  const navigate = useNavigate();
+  const [puzzle,setPuzzle]=useState(puzzleData);
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
   const [gameOver,setGameOver]=useState(false)
