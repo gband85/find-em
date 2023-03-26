@@ -39,6 +39,16 @@ await resetPuzzle(params)
   const [gameOver,setGameOver]=useState(false)
   const [timeDisplay,setTimeDisplay] = useState("00:00:00")
   const [isRunning,setIsRunning] = useState(true)
+  useEffect(()=>{
+    reset(puzzle.title)
+    let newchars2 = puzzle.chars.map((char) => {
+
+      return { ...char, found: false }
+    });
+    setPuzzle({ ...puzzle, chars: newchars2 });
+    setGameOver(false)
+    setIsRunning(true)
+  },[])
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
