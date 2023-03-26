@@ -130,10 +130,7 @@ openContextMenu(e)
 
      return { ...char, found: false }
    });
-   setPuzzle({ ...puzzle, chars: newchars2 });
-   //ref.current.startTimer();
-   reset(puzzle.title)
-    setGameOver(false)
+navigate('/')
  }
 }
  // console.log(puzzle);
