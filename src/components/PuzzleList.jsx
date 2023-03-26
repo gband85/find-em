@@ -13,24 +13,24 @@ const PuzzleList = () => {
    })
  const puzzles=useLoaderData()
    return (
-     <div className="puzzles">
+     <div className="columns" id='puzzle-list'>
        {puzzles.map((puzzle) => {
          return (
-           <>
+           <div className="column">
              <Link
                className="puzzle-lin"
                to={`/puzzles/${puzzle.title}`}
              >
-               <div className='card'>
+               <div className='card grow'>
                  {/* <h1>{puzzle.title}</h1> */}
-                 <div className="card-image">
-                 <figure className="image">
-                 <img src={puzzle.source} />
-</figure>
+                 <div className="card-image ">
+
+                 <img src={puzzle.source} className='image'/>
+
                  </div>
                </div>
              </Link>
-           </>
+           </div>
          );
        })}
      </div>
