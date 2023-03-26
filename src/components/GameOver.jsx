@@ -17,11 +17,11 @@ const handleChange=(e)=>{
     <button type="submit" className="button is-primary" >Add Score</button>
     </form>
       <button id="reset" className="button is-primary"
-        onClick={handleClick}
+        onClick={props.handleClick}
         type="button"
       >
-        Try Again
+        Exit
       </button>
-    </div>;
+    </div>)
   }
   export default GameOver;
