@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { redirect, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { redirect, useLoaderData, useLocation, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
 import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
@@ -29,7 +29,7 @@ const Puzzle = (props) => {
   const [puzzle,setPuzzle]=useState(puzzleData);
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
-  const [gameOver,setGameOver]=useState(false)
+  // const [gameOver,setGameOver]=useState(false)
   const [overlayDisplay, setOverlayDisplay] = useState(false);
   const [boxStyle, setBoxStyle] = useState({
     left: "",
@@ -59,7 +59,6 @@ const Puzzle = (props) => {
     },[puzzle.chars,setGameOver,setIsRunning])
   const openContextMenu=(e)=>{
     setBoxStyle({
-      ...boxStyle,
       left: `${(e.pageX / e.target.width) * 100}%`,
       top: `${((e.pageY-90) / e.target.height) * 100}%`,
       display: "block",
