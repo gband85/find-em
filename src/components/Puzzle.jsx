@@ -52,9 +52,10 @@ await resetPuzzle(params)
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
-        setGameOver(true)
+       setGameOver(true)
+       setIsRunning(false)
       }
-    },[puzzle.chars])
+    },[puzzle.chars,setGameOver,setIsRunning])
   const openContextMenu=(e)=>{
     setBoxStyle({
       ...boxStyle,
