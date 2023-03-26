@@ -65,7 +65,7 @@ await resetPuzzle(params)
     });
   }
   const closeContextMenu=()=>{
-      setBoxStyle({ ...boxStyle, left: "", top: "", display: "none" });
+      setBoxStyle({left: "", top: "", display: "none" });
   }
   //check if clicked location is a character
   function checkForChar(e) {
