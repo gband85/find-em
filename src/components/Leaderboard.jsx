@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { collection, addDoc,getDocs } from "firebase/firestore";
 import {db} from './firebase-config';
+      import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import { getScores } from './firebase';
 // Initialize Firebase
-   
-function Leaderboard(scores) {
-    const [scores,setScores]=useState([])
-const [score,setScore]=useState({
-    Name: "",
-Time: ""
-})
-
-// Initialize Cloud Firestore and get a reference to the service
-const addScore=async (e)=>{
-  //  e.preventDefault()
-    try {
-        const docRef = await addDoc(collection(db, "scores"), {
-          ...score
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-}
+function Leaderboard() {
+const {scores,puzzle}=useLoaderData()
 
  return (
     <>
@@ -51,28 +35,10 @@ const addScore=async (e)=>{
          
       </tbody>
 
-//   if (!scores)
-  getScores()
-//   console.log(scores);
-// return () => {
-//     // this now gets called when the component unmounts
-//   };
-},[])
-  return (
-    <>
-    <div></div>
-    <div>
-    {
-        scores.map((score,i)=>(
-        <h1 key={i}>
-        {score.Name}
-        </h1>
-        ))
-    }
 
     </table>
    </> 
   )
 }
 
-export default Leaderboard
+export default Leaderboard;
