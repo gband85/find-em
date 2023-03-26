@@ -5,38 +5,32 @@ function LeaderboardLayout() {
     let puzzles=useLoaderData()
   return (
     <>
-    <div className="puzzles">
+    {/* <div className="puzzle block"> */}
+    <div className="columns" id='leader-list'>
     {puzzles.map((puzzle) => {
       return (
-        <>
+        <div className='column'>
           <NavLink
-            className="puzzle-link"
-            to={`/leaderboard/${puzzle.title}`}
-            style={({isActive,isPending})=>{
-                return {
-                    border: isActive ? "2px solid red":""
+            className={({isActive,isPending})=>
+                        isActive ? "active-image":""
                 }
-            }}
-           //  onClick={()=>{
-           //   setCurrentPuzzle(puzzle)
-           //   setShowChars(true)
-           //   setShowClock(true)
-           //  }}
+            to={`/leaderboard/${puzzle.title}`}
           >
-            <div className='card'>
+            <div className='card grow'>
               {/* <h1>{puzzle.title}</h1> */}
               <div className="card-image">
-              <figure className="image">
-              <img src={puzzle.source} />
-</figure>
+
+              <img src={puzzle.source} className='image'/>
+
               </div>
             </div>
           </NavLink>
-        </>
+        </div>
       );
     })}
-  </div>
-  <Outlet/>
+    </div>
+  {/* </div> */}
+ <Outlet/>
   </>
   )
 }
