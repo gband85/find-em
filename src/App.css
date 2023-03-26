@@ -38,10 +38,11 @@ font-size: x-large; */
 .puzzles {
   display: flex; 
   /* flex-direction: column; */
+  margin-top: 20px;
   gap: 20px;
 }
 .puzzle-link img {
-  width: 60%;
+  width: 40%;
 }
 .puzzle-link {
   display: flex;
@@ -117,11 +118,11 @@ pointer-events: none;
   /* min-width: 460px; */
   display: flex;
 }
-.image {
+.image img{
   /* background: url(127.0.0.1:3002//static/media/pierre-roussel-ps3-phone2.83776263b48a9533cc22.jpg); */
   /* position: absolute; */
-/* width: 100%;
-  height: auto; */
+max-width: 50%;
+  height: auto;
 }
 .puzzle {
    width: 100vw;
@@ -155,6 +156,11 @@ height: 2340px; */
 }
 #clock {
   justify-self: right;
+  position: absolute;
+  color: red;
+  top: 0px;
+  left: 0px;
+  z-index: 500;
 }
 .puzzle-body {
   position: relative;
@@ -168,143 +174,46 @@ height: 2340px; */
   pointer-events: none;
   border-radius: 50%;
 }
-.nav__menu {
-  color: white;
-  background-color: #006699;
-  
-  transition: transform .5s; 
-  transform: translateX(-100%);
-  width: 300px;
-  /* position: fixed; */
-  /* z-index: 50; */
-  height: 100vh;
-  display: block;
-  }
-  .nav-link {
-    color: white;
-    text-decoration: none;
-  }
-  .nav-link:hover {
-    text-decoration: underline;
-  }
-  .nav__menu.show {
-  transform: translateX(0);
-  }
-  .nav__menu__list {
-  list-style: none;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  padding-top: 30px;
-  }
-  .nav__menu__list a:hover, .navbar__nav__list a:hover {
-  text-decoration: underline;
-  }
-  .navbar {
-    display: flex;
-    /* position:fixed; */
-    padding: 20px;
-    color: #fff;
-    /* width: 100vw; */
-    background-color: #006699;
-    justify-content: space-between;
-    font-size: 28px;
-    /* z-index: 20; */
-  }
-  .navbar__brand {
-    font-size: 2rem;
-    color: #fff;
-  }
-  .navbar__brand a {
-    text-decoration: none;
-    font-size: 28px;
-  }
-  .navbar__brand a:visited {
-    color: white;
-  }
-  .navbar__nav {
-    display: none;
-  }
-  .navbar__nav__list {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 28px;
-  }
-  .menu__btn {
-    display: inline-block;
-    cursor: pointer;
-    color: #fff;
-    background-color:transparent;
-  justify-self: flex-end;
-  border: none;
-  outline: none;
-  }
-  @media  (min-width:768px){
-    .navbar__nav {
-  display: block;
-    }
-  .menu__btn {
-  display: none;
-  }
-  .nav__menu {
-  display: none;
-  }
-  }
-  .close__menu {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
-  
-  }
-  .close__menu__btn {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  }
-  .close__menu__btn:hover {
-  color: rgb(205, 205, 205);
-  }
-  .cart-icon {
-    z-index: 5;
-    background-color: red;
-    height: fit-content;
-  }
-.nav-link-cart {
-  text-decoration: none;
-  /* height: min-content; */
-  background-color: transparent;
-  border: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-  .badge {
-    text-decoration: none;
-    padding: 0 3px;
-    background-color: #5c3996;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 100%;
+
+  header {
+    background-color: #006699; 
+  }
+.grow img{
+  transition: 0.5s ease;
+  }
+  .grow img:hover{
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  transition: 0.5s ease;
+  }
+#leader-list,#puzzle-list {
+margin-top: 20px;
+  }
+  #time-left {
     position: absolute;
-    text-align: center;
-    top: 18px;
-    right: 20px;
-    width: fit-content;
-    /* z-index: 6; */
+    z-index: 654;
+    top: 20px;
+    color: red;
+    left: 20px;
   }
-  .menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
+  #brand:hover{
+background-color: transparent;
   }
-  .char-names {
-    display: flex;
+  #brand:visited {
+    background-color: transparent;
+  }
+  .navbar-item:visited {
+background-color: transparent;
+  }
+  a.active-image div div img{
+    transform: scale(1.05);
+  }
+  a.active-image div div img:hover{
+    transform: scale(1.05);
   }
