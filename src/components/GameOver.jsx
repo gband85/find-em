@@ -10,7 +10,9 @@ e.preventDefault()
 const handleChange=(e)=>{
   setScore({...score,[e.target.name]:e.target.value})
 }
+    return (<div
       className="game-over">
+      <h1>Congratulations! You finished in {props.timeDisplay}</h1>
       <form onSubmit={handleSubmit} className="is-flex">
 
       <input required placeholder='Name' name="Name" value={score.Name} onChange={handleChange}/>
