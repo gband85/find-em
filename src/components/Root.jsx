@@ -1,25 +1,36 @@
-import { forwardRef } from "react";
-import { Outlet, Link, useMatches, useRouteLoaderData } from "react-router-dom";
+import { forwardRef, useRef, useState } from "react";
+import { Outlet, Link, useMatches, useRouteLoaderData, NavLink } from "react-router-dom";
 import GameTimer from "./GameTimer";
 
 const Root = (props) => {
   const data = useRouteLoaderData("puzzle");
+  const [active, setActive] = useState(false)
+  const toggleActive=()=>{
+setActive(!active)
+  }
+  const handleResize=()=>{
+    if (window.innerWidth >= 769) {
+      if (ref.current.classList.contains('is-active')) {
+        toggleActive()
+      }
+     }
+  }
   return (
     
     <>
       <nav className="navbar is-info">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
+          <Link to="/" className="navbar-item" id='brand'>
             Find 'Em
           </Link>
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <a role="button" className={active ? "navbar-burger is-active" : "navbar-burger"} onResize={handleResize} onClick={()=>toggleActive()} aria-label="menu" aria-expanded="false">
   <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
 </a>
         </div>
 
-        <div className="navbar-menu">
+        <div className={active ? "navbar-menu is-active" : "navbar-menu"}>
           <div className="navbar-start"></div>
 
           <div className="navbar-end">
@@ -37,13 +48,18 @@ const Root = (props) => {
               </>
             ) : (
               <>
-                <Link to="/info" className="navbar-item">
+                <NavLink to="/info" className={({isActive,isPending})=>
+                        isActive ? "navbar-item is-active":"navbar-item"
+                }>
                   Info
-                </Link>
-<Link to="/" className="navbar-item">Puzzles</Link>
-                <Link to="/leaderboard/PS3" className="navbar-item">
+                </NavLink>
+<NavLink to="/" className={({isActive,isPending})=>                
+                isActive ? "navbar-item is-active":"navbar-item"
+            }>Puzzles</NavLink>
+                <NavLink to="/leaderboard/PS3" className={({isActive,isPending})=> isActive ? "navbar-item is-active":"navbar-item"
+                    }>
                   Leaderboard
-                </Link>
+                </NavLink>
               </>
             )}
                             
