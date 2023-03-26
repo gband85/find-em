@@ -36,6 +36,9 @@ await resetPuzzle(params)
     display: "none",
   });
   const [selection, setSelection] = useState();
+  const [gameOver,setGameOver]=useState(false)
+  const [timeDisplay,setTimeDisplay] = useState("00:00:00")
+  const [isRunning,setIsRunning] = useState(true)
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
