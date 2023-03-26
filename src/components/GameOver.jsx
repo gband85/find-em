@@ -1,3 +1,11 @@
+import { useState } from "react";
+
+import { collection, addDoc,getDocs } from "firebase/firestore";
+import {db} from './firebase-config';
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { addScore } from "./firebase";
+const GameOver=(props) =>{
   const navigate = useNavigate();
     const [score,setScore]=useState({
     Name: "",
