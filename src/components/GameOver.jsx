@@ -1,3 +1,8 @@
+  const navigate = useNavigate();
+    const [score,setScore]=useState({
+    Name: "",
+    Time: props.timeDisplay
+})
 
 const handleSubmit=(e)=>{
   console.log(score);
