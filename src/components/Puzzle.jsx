@@ -21,6 +21,7 @@ async function reset(params) {
 await resetPuzzle(params)
 }
 
+const Puzzle = (props) => {
   const data=useRouteLoaderData('root')
  // console.log(data);
   const puzzleData=useLoaderData()
