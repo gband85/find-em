@@ -126,8 +126,13 @@ openContextMenu(e)
       {gameOver ?  <div className="overlay"></div> : null}
 
         {
-       gameOver ? <GameOver handleClick={handleClick} title={puzzle.title}/> : null}
+      gameOver ? <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={()=>reset(puzzle.title)}/> : null}
         {/* <div className="puzzle-body"> */}
+        <GameTimer  isRunning={isRunning}
+                                    gameOver={gameOver}
+                  setTimeDisplay={setTimeDisplay}
+                  timeDisplay={timeDisplay}
+                />
           <img
           
             src={puzzle.source}
