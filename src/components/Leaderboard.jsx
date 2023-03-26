@@ -23,23 +23,33 @@ const addScore=async (e)=>{
       }
 }
 
-   const getScores = async () => {
-  // const scoresCol=
- await getDocs(collection(db,'scores'))
- .then((scoreSnapshot)=>{
-     const scoreList=scoreSnapshot.docs.map((doc)=>({...doc.data(),id:doc.id}))
-     setScores(scoreList)
-      console.log(scores)
- })
-   
-  
-  
-
-
-  // return scoreList;
-}
-
-useEffect(()=>{
+ return (
+    <>
+      <h2 className='title'>{puzzle.title}</h2>
+    <table className='table is-fullwidth is-narrow is-bordered is-striped'>
+    
+      <thead>
+         <tr>
+            {/* <th>Place</th> */}
+            <th>Name</th>
+            <th>Time</th>
+         </tr>
+      </thead>
+      <tbody>
+         
+              { scores ?  scores.map((score)=>(
+               <tr>
+        <td key={score.id}>
+        {score.Name}
+        </td>
+        <td >
+       {score.Time}
+        </td>
+        </tr>
+        )):null
+    }    
+         
+      </tbody>
 
 //   if (!scores)
   getScores()
@@ -60,7 +70,7 @@ useEffect(()=>{
         ))
     }
 
-    </div>
+    </table>
    </> 
   )
 }
