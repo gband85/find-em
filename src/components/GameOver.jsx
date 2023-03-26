@@ -1,6 +1,15 @@
 
-const GameOver=({timeDisplay,handleClick}) =>{
-    return <div
+const handleSubmit=(e)=>{
+  console.log(score);
+e.preventDefault()
+    addScore(score)
+    //props.setGameOver(false)
+  //  props.reset()
+    navigate(`/leaderboard/${props.title}`)
+}
+const handleChange=(e)=>{
+  setScore({...score,[e.target.name]:e.target.value})
+}
       className="game-over">
       <form onSubmit={handleSubmit} className="is-flex">
 
