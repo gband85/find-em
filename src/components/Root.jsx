@@ -1,9 +1,11 @@
 import { forwardRef, useRef, useState } from "react";
 import { Outlet, Link, useMatches, useRouteLoaderData, NavLink } from "react-router-dom";
 import GameTimer from "./GameTimer";
+import '../css/Root.css'
 
 const Root = (props) => {
   const data = useRouteLoaderData("puzzle");
+  const ref=useRef();
   const [active, setActive] = useState(false)
   const toggleActive=()=>{
 setActive(!active)
@@ -64,9 +66,9 @@ setActive(!active)
           </div>
         </div>
       </nav>
-      <div className="container">
+      
         <Outlet />
-      </div>
+      
     </>
   );
 };
