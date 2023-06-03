@@ -18,6 +18,7 @@ function Info() {
         <li>React</li>
         <li>Firebase</li>
         <li>Bulma</li>
+        <li>Images by Pierre Roussel - pierre.roussel@gmail.com</li>
       </ul>
     </p>
   </div>
