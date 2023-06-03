@@ -1,9 +1,4 @@
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .overlay {
   height: 100%;
   width: 100%;
@@ -13,28 +8,7 @@
   opacity: 0.7;
   z-index: 102;
 }
-.game-over {
-  display: flex;
-  position:absolute;
-  background-color: white;
-  top:20%;
-    gap: 30px;
-  align-items: center;
-  text-align: center;
-padding: 30px 50px 30px 50px;
-  z-index:103;
-  left:0;
-  flex-direction: column;
-  font-size: x-large;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-  right: 0;
-}
-.game-over button {
- /* padding:  10px 30px;
-font-size: x-large; */
-}
+
 .puzzles {
   display: flex; 
   /* flex-direction: column; */
@@ -60,125 +34,15 @@ font-size: x-large; */
   aspect-ratio: auto;
   width: 30%;
 } */
-.container {
+/* .container {
   display: flex;
 
  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.find-list {
-position: absolute;
-background-color: black;
-white-space: nowrap;
-/* z-index: 300; */
-color: white;
-}
-.find-list ul {
-  list-style: none;
-/* text-overflow: clip; */
-}
+} */
 
-.find-list button {
-  padding: 10px ;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  /* background-color: #3e3940; */
-  
-  /* color: white; */
-   /* text-decoration-line: line-through; */
-}
-.find-list button:hover {
-  /* background-color: rgb(96,96,96); */
-}
-.find-list button:disabled {
-  /* background-color: black; */
- 
-}
-.found {
-  opacity: 0.6;
-}
-.char-box {
-  position: absolute;
-  /* left: 82.3%;
-top: 49%; */
-/* width: 53px;
-height: 60px; */
-pointer-events: none;
-}
-.char-overlay {
-  /* z-index: 55; */
-  background-color: green;
-  position: absolute;
- /* width: inherit; */
- height: 100%;
- /* width: 99.9999999vw; */
-  /* min-height: 997px; */
-  /* min-width: 460px; */
-  display: flex;
-}
-.image img{
-  /* background: url(127.0.0.1:3002//static/media/pierre-roussel-ps3-phone2.83776263b48a9533cc22.jpg); */
-  /* position: absolute; */
-max-width: 50%;
-  height: auto;
-}
-.puzzle {
-   width: 100vw;
-   /* min-width: 1080px; */
-   /* min-width: 497px; */
-/* max-height: 2340px; */
-flex-direction: column;
-   /* background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat; */
-        /* overflow: hidden; */
-cursor: crosshair;
-   position: relative;
-  /* height: 100vh;   */
-   display: flex;
-  justify-content: center; 
 
-/* width: 1080px;
-height: 2340px; */
-}
-.puzzle-header {
-  display: flex;
-  justify-content: flex-end;
-  height: 60px;
-  align-items: center;
-  gap: 50%;
-}
-.title{
-/* text-align: center; */
-/* justify-self: center; */
-}
-#clock {
-  justify-self: right;
-  position: absolute;
-  color: red;
-  top: 0px;
-  left: 0px;
-  z-index: 500;
-}
-.puzzle-body {
-  position: relative;
-}
-.target {
-  border:2px red dashed;
-  background: transparent;
-  width:64px;
-  height:64px;
-  position:absolute;
-  pointer-events: none;
-  border-radius: 50%;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
   header {
     background-color: #006699; 
@@ -195,22 +59,8 @@ height: 2340px; */
 #leader-list,#puzzle-list {
 margin-top: 20px;
   }
-  #time-left {
-    position: absolute;
-    z-index: 654;
-    top: 20px;
-    color: red;
-    left: 20px;
-  }
-  #brand:hover{
-background-color: transparent;
-  }
-  #brand:visited {
-    background-color: transparent;
-  }
-  .navbar-item:visited {
-background-color: transparent;
-  }
+
+
   a.active-image div div img{
     transform: scale(1.05);
   }

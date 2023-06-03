@@ -1,0 +1,9 @@
+#brand:hover{
+    background-color: transparent;
+      }
+      #brand:visited {
+        background-color: transparent;
+      }
+      .navbar-item:visited {
+    background-color: transparent;
+      }
