@@ -1,6 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore} from 'firebase/firestore'
 
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+//import {initializeApp} from 'firebase/app';
+//import {getFirestore} from 'firebase/firestore'
 /**
  * To find your Firebase config object:
  * 
@@ -10,7 +12,7 @@ import { getFirestore} from 'firebase/firestore'
  * 4. Copy the config object snippet, then add it here.
  */
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseConfig = { 
   apiKey: "AIzaSyBX0_pP-NQSLagEF6pn8MXM3SARpe4Tug4",
   authDomain: "find-em-afd9c.firebaseapp.com",
   projectId: "find-em-afd9c",
@@ -18,13 +20,16 @@ const firebaseConfig = {
   messagingSenderId: "352900682612",
   appId: "1:352900682612:web:80d7c715cfe7f9788d1221"
 };
-const firebaseApp = initializeApp(firebaseConfig);
-export const db=getFirestore(firebaseApp);
-export function getFirebaseConfig() {
-  if (!firebaseConfig || !firebaseConfig.apiKey) {
-    throw new Error('No Firebase configuration object provided.' + '\n' +
-    'Add your web app\'s configuration object to firebase-config.js');
-  } else {
-    return firebaseConfig;
+  console.log(firebase)
+  export function getFirebaseConfig() {
+
+    if (!firebaseConfig || !firebaseConfig.apiKey) {
+      throw new Error('No Firebase configuration object provided.' + '\n' +
+      'Add your web app\'s configuration object to firebase-config.js');
+    } else {
+      return firebaseConfig;
+    }
   }
-}
+  
+const firebaseApp = firebase.initializeApp(getFirebaseConfig());
+export const db= firebaseApp.firestore;
