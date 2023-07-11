@@ -4,6 +4,8 @@ import GameTimer from './GameTimer';
 import  Charbox  from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 import GameOver from './GameOver';
+import '../css/Puzzle.css'
+import { toast, ToastContainer } from 'react-toastify';
 
 
 export async function puzzleLoader({ params }) {
@@ -37,7 +39,7 @@ const Puzzle = (props) => {
     display: "none",
   });
   const [selection, setSelection] = useState();
-  const [gameOver,setGameOver]=useState(false)
+  const [gameOver,setGameOver]=useState(true)
   const [timeDisplay,setTimeDisplay] = useState("00:00:00")
   const [isRunning,setIsRunning] = useState(true)
   useEffect(()=>{
@@ -60,7 +62,7 @@ const Puzzle = (props) => {
   const openContextMenu=(e)=>{
     setBoxStyle({
       left: `${(e.pageX / e.target.width) * 100}%`,
-      top: `${((e.pageY-90) / e.target.height) * 100}%`,
+      top: `${((e.pageY-50) / e.target.height) * 100}%`,
       display: "block",
     });
   }
@@ -76,8 +78,8 @@ const Puzzle = (props) => {
       if (
         ((e.pageX / e.target.width) * 100) >= element.x1 &&
         ((e.pageX / e.target.width) * 100) <= element.x2 &&
-        (((e.pageY - 98) / e.target.height) * 100) >= element.y1 &&
-        (((e.pageY - 98) / e.target.height) * 100) <= element.y2
+        (((e.pageY - 50) / e.target.height) * 100) >= element.y1 &&
+        (((e.pageY - 50) / e.target.height) * 100) <= element.y2
       ) {
         console.log(element.name);
         return element;
@@ -106,18 +108,18 @@ closeContextMenu()
      }
      return char;
    });
-   console.log("found" + selection);
+   toast(`found ${selection}`);
    
    setPuzzle({ ...puzzle, chars: newchars });
    findChar({ title: puzzle.title, char: selection });
 
  } else {
-   console.log("try again!");
+   toast("try again!");
  }
  setSelection(undefined);
 
  }
- else if (e.target.matches(".image"))
+ else if (e.target.matches(".puzzle-image"))
  {
      console.log(e);
 checkForChar(e)
@@ -141,16 +143,16 @@ navigate('/')
 
         {
       gameOver ? <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={()=>reset(puzzle.title)}/> : null}
-        {/* <div className="puzzle-body"> */}
         <GameTimer  isRunning={isRunning}
                                     gameOver={gameOver}
                   setTimeDisplay={setTimeDisplay}
                   timeDisplay={timeDisplay}
                 />
+                <ToastContainer position='top-center' closeButton={false} autoClose={1000}/>
           <img
           
             src={puzzle.source}
-            className="image"
+            className="puzzle-image"
             onClick={handleClick}
           />
 

@@ -1,21 +1,54 @@
-import { useState } from "react";
+import { useEffect, useRef,useState } from "react";
 
-import { collection, addDoc,getDocs } from "firebase/firestore";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 import {db} from './firebase-config';
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { addScore } from "./firebase";
+import { addScore } from "./firebasefns";
+import '../css/GameOver.css'
+
 const GameOver=(props) =>{
+ // var ui = new firebaseui.auth.AuthUI(firebase.auth());
+ const uiConfig = {
+  signInFlow: 'popup',
+  signInSuccessUrl: '/',
+  signInOptions: [
+    // Leave the lines as is for the providers you want to offer your users.
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    //firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    //firebase.auth.PhoneAuthProvider.PROVIDER_ID
+  ],
+
+};
+
+
+ useEffect(()=>{
+  const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+  ui.start(document.querySelector("#firebaseui-auth-container"), uiConfig);
+})
+const ref=useRef()
   const navigate = useNavigate();
     const [score,setScore]=useState({
     Name: "",
     Time: props.timeDisplay
 })
 
+
+
+      // Initialize the FirebaseUI Widget using Firebase.
+//      const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+  //    ui.start(document.querySelector("#firebaseui-auth-container"), uiConfig);
+
 const handleSubmit=(e)=>{
   console.log(score);
 e.preventDefault()
-    addScore(score)
+    addScore(score,props)
     //props.setGameOver(false)
   //  props.reset()
     navigate(`/leaderboard/${props.title}`)
@@ -26,6 +59,9 @@ const handleChange=(e)=>{
     return (<div
       className="game-over">
       <h1>Congratulations! You finished in {props.timeDisplay}</h1>
+      <div ref={ref} id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+{/* <button onClick={()=>ui.start(document.querySelector('#firebaseui-auth-container'), uiConfig)}>Sign in</button> */}
       <form onSubmit={handleSubmit} className="is-flex">
 
       <input required placeholder='Name' name="Name" value={score.Name} onChange={handleChange}/>
