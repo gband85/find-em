@@ -50,7 +50,7 @@ const ref=useRef()
 const handleSubmit=(e)=>{
   console.log(score);
 e.preventDefault()
-    addScore(score,props)
+addScore({...score,Name:googleUser.displayName},props)
     //props.setGameOver(false)
   //  props.reset()
     navigate(`/leaderboard/${props.title}`)
@@ -58,6 +58,7 @@ e.preventDefault()
     return (<div
       className="game-over">
       <h1>Congratulations! You finished in {props.timeDisplay}</h1>
+      <p>{googleUser.displayName}</p> 
       <SignInScreen setGoogleUser={setGoogleUser}/>
 <div id="loader">Loading...</div>
 {/* <button onClick={()=>ui.start(document.querySelector('#firebaseui-auth-container'), uiConfig)}>Sign in</button> */}
