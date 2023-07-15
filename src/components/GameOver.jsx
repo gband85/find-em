@@ -10,6 +10,7 @@ import { addScore } from "./firebasefns";
 import '../css/GameOver.css'
 
 const GameOver=(props) =>{
+  const [googleUser,setGoogleUser]=useState({})
  // var ui = new firebaseui.auth.AuthUI(firebase.auth());
  const uiConfig = {
   signInFlow: 'popup',
