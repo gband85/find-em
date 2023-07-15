@@ -8,6 +8,7 @@ import {db} from './firebase-config';
 import { useNavigate } from "react-router-dom";
 import { addScore } from "./firebasefns";
 import '../css/GameOver.css'
+import SignInScreen from "./SignInScreen";
 
 const GameOver=(props) =>{
   const [googleUser,setGoogleUser]=useState({})
@@ -57,7 +58,7 @@ e.preventDefault()
     return (<div
       className="game-over">
       <h1>Congratulations! You finished in {props.timeDisplay}</h1>
-      <div ref={ref} id="firebaseui-auth-container"></div>
+      <SignInScreen setGoogleUser={setGoogleUser}/>
 <div id="loader">Loading...</div>
 {/* <button onClick={()=>ui.start(document.querySelector('#firebaseui-auth-container'), uiConfig)}>Sign in</button> */}
       <form onSubmit={handleSubmit} className="is-flex">
