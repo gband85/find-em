@@ -53,9 +53,6 @@ e.preventDefault()
   //  props.reset()
     navigate(`/leaderboard/${props.title}`)
 }
-const handleChange=(e)=>{
-  setScore({...score,[e.target.name]:e.target.value})
-}
     return (<div
       className="game-over">
       <h1>Congratulations! You finished in {props.timeDisplay}</h1>
@@ -64,7 +61,6 @@ const handleChange=(e)=>{
 {/* <button onClick={()=>ui.start(document.querySelector('#firebaseui-auth-container'), uiConfig)}>Sign in</button> */}
       <form onSubmit={handleSubmit} className="is-flex">
 
-      <input required placeholder='Name' name="Name" value={score.Name} onChange={handleChange}/>
     <button type="submit" className="button is-primary" >Add Score</button>
     </form>
       <button id="reset" className="button is-primary"
