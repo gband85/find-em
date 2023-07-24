@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { redirect, useLoaderData, useLocation, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import GameTimer from './GameTimer';
-import  Charbox  from "./Charbox";
+import Charbox from "./Charbox";
 import { getPuzzle, resetPuzzle, updateChar } from './puzzles';
 import GameOver from './GameOver';
 import '../css/Puzzle.css'
@@ -9,26 +9,26 @@ import { toast, ToastContainer } from 'react-toastify';
 
 
 export async function puzzleLoader({ params }) {
- // console.log(params);
-  const puzzle=await getPuzzle(params.puzzleTitle)
-//  console.log(puzzle);
-  
+  // console.log(params);
+  const puzzle = await getPuzzle(params.puzzleTitle)
+  //  console.log(puzzle);
+
   return puzzle;
 }
 
 async function findChar(params) {
- await updateChar(params.title, params.char);
+  await updateChar(params.title, params.char);
 }
 async function reset(params) {
-await resetPuzzle(params)
+  await resetPuzzle(params)
 }
 
 const Puzzle = (props) => {
-  const data=useRouteLoaderData('root')
- // console.log(data);
-  const puzzleData=useLoaderData()
+  const data = useRouteLoaderData('root')
+  // console.log(data);
+  const puzzleData = useLoaderData()
   const navigate = useNavigate();
-  const [puzzle,setPuzzle]=useState(puzzleData);
+  const [puzzle, setPuzzle] = useState(puzzleData);
   // use state instead of trying to reload data from loader 
   //data will be updated after state is set
   // const [gameOver,setGameOver]=useState(false)
@@ -39,33 +39,33 @@ const Puzzle = (props) => {
     display: "none",
   });
   const [selection, setSelection] = useState();
-  const [gameOver,setGameOver]=useState(false)
-  const [timeDisplay,setTimeDisplay] = useState("00:00:00")
-  const [isRunning,setIsRunning] = useState(true)
+  const [gameOver, setGameOver] = useState(false)
+  const [timeDisplay, setTimeDisplay] = useState("00:00:00")
+  const [isRunning, setIsRunning] = useState(true)
 
-    //Check on every render if all characters are found
-    useEffect(()=>{
-      if (puzzle.chars.every(char=>char.found===true)){
-       setGameOver(true)
-       setIsRunning(false)
-      }
-    },[puzzle.chars,setGameOver,setIsRunning])
-  const openContextMenu=(e)=>{
+  //Check on every render if all characters are found
+  useEffect(() => {
+    if (puzzle.chars.every(char => char.found === true)) {
+      setGameOver(true)
+      setIsRunning(false)
+    }
+  }, [puzzle.chars, setGameOver, setIsRunning])
+  const openContextMenu = (e) => {
     setBoxStyle({
       left: `${(e.pageX / e.target.width) * 100}%`,
-      top: `${((e.pageY-50) / e.target.height) * 100}%`,
+      top: `${((e.pageY - 50) / e.target.height) * 100}%`,
       display: "block",
     });
   }
-  const closeContextMenu=()=>{
-      setBoxStyle({left: "", top: "", display: "none" });
+  const closeContextMenu = () => {
+    setBoxStyle({ left: "", top: "", display: "none" });
   }
   //check if clicked location is a character
   function checkForChar(e) {
     function isAChar(element) {
       console.log(element);
-      console.log(e.pageX / e.target.width*100);
-  //is clicked location within a character's bounding box?
+      console.log(e.pageX / e.target.width * 100);
+      //is clicked location within a character's bounding box?
       if (
         ((e.pageX / e.target.width) * 100) >= element.x1 &&
         ((e.pageX / e.target.width) * 100) <= element.x2 &&
@@ -83,104 +83,102 @@ const Puzzle = (props) => {
       setSelection(undefined);
     }
   }
-const  handleClick=(e)=>{
- //  handle clicking on character name button
- if (e.target.matches(".char button"))
+  const handleClick = (e) => {
+    //  handle clicking on character name button
+    if (e.target.matches(".char button")) {
+      //Hide character list
+      closeContextMenu()
+      console.log(e);
+      if (e.target.dataset["name"] === selection) {
+        //console.log(submit);
+        let newchars = puzzle.chars.map((char) => {
+          if (char.name === selection) {
+            return { ...char, found: true };
+          }
+          return char;
+        });
+        toast(`found ${selection}`);
 
- {
-//Hide character list
-closeContextMenu()
- console.log(e);
- if (e.target.dataset["name"] === selection) {
-   //console.log(submit);
-   let newchars = puzzle.chars.map((char) => {
-     if (char.name === selection) {
-       return { ...char, found: true };
-     }
-     return char;
-   });
-   toast(`found ${selection}`);
-   
-   setPuzzle({ ...puzzle, chars: newchars });
-   findChar({ title: puzzle.title, char: selection });
+        setPuzzle({ ...puzzle, chars: newchars });
+        findChar({ title: puzzle.title, char: selection });
 
- } else {
-   toast("try again!");
- }
- setSelection(undefined);
+      } else {
+        toast("try again!");
+      }
+      setSelection(undefined);
 
- }
- else if (e.target.matches(".puzzle-image"))
- {
-     console.log(e);
-checkForChar(e)
-openContextMenu(e)
- }
- else if (e.target.matches('#reset')) {
+    }
+    else if (e.target.matches(".puzzle-image")) {
+      console.log(e);
+      checkForChar(e)
+      openContextMenu(e)
+    }
+    else if (e.target.matches('#reset')) {
 
-   let newchars2 = puzzle.chars.map((char) => {
+      let newchars2 = puzzle.chars.map((char) => {
 
-     return { ...char, found: false }
-   });
-navigate('/')
- }
-}
- // console.log(puzzle);
+        return { ...char, found: false }
+      });
+      navigate('/')
+    }
+  }
+  // console.log(puzzle);
   return (
     <>
-           <div className="puzzle">
-           {gameOver ? <div className="overlay" ></div>: null}
+      <div className="puzzle">
+        {gameOver ? <div className="overlay" ></div> : null}
 
-        
-      {gameOver ?  <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={()=>reset(puzzle.title)} gameOver={gameOver} /> :  null}
-        <GameTimer  isRunning={isRunning}
-                                    gameOver={gameOver}
-                  setTimeDisplay={setTimeDisplay}
-                  timeDisplay={timeDisplay}
-                />
-                <ToastContainer position='top-center' closeButton={false} autoClose={1000}/>
-          <img
-          
-            src={puzzle.source}
-            className="puzzle-image"
-            onClick={handleClick}
-          />
 
-          {puzzle.chars.map((char) => {
-            if (char.found === true ) { 
+        {gameOver ? <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={() => reset(puzzle.title)} gameOver={gameOver} /> : null}
+        <GameTimer isRunning={isRunning}
+          gameOver={gameOver}
+          setTimeDisplay={setTimeDisplay}
+          timeDisplay={timeDisplay}
+        />
+        <ToastContainer position='top-center' closeButton={false} autoClose={1000} />
+        <img
+
+          src={puzzle.source}
+          className="puzzle-image"
+          onClick={handleClick}
+        />
+
+        {puzzle.chars.map((char) => {
+          if (char.found === true) {
             return (
-                <Charbox
+              <Charbox
                 key={char.name}
-                char={char}/>   )}  
-                else
-                return null            
-          })}
+                char={char} />)
+          }
+          else
+            return null
+        })}
 
-          <div
-            className="find-list"
-            style={boxStyle}
-          >
-            <ul>
-              {puzzle.chars.map((char) => {
-                let disabled;
-                if (char.found) {
-                  disabled = true;
-                }
-                return (
-                  <li className="char" key={char.name}>
-                    <button
-                      data-name={char.name}
-                      type="submit"
-                      disabled={disabled}
-                      onClick={handleClick}
-                    >
-                      {char.name}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+        <div
+          className="find-list"
+          style={boxStyle}
+        >
+          <ul>
+            {puzzle.chars.map((char) => {
+              let disabled;
+              if (char.found) {
+                disabled = true;
+              }
+              return (
+                <li className="char" key={char.name}>
+                  <button
+                    data-name={char.name}
+                    type="submit"
+                    disabled={disabled}
+                    onClick={handleClick}
+                  >
+                    {char.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         {/* </div> */}
       </div>
     </>
