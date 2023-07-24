@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { collection, addDoc,getDocs } from "firebase/firestore";
+import { collection, addDoc,getDocs } from "@firebase/firestore";
 //import {db} from './firebase-config';
 import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
 import { getScores } from './firebasefns';

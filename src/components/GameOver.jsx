@@ -3,7 +3,7 @@ import { db } from './firebase-config';
 import { useNavigate } from "react-router-dom";
 import { addScore } from "./firebasefns";
 import '../css/GameOver.css'
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from '@firebase/auth';
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 
 const GameOver = (props) => {
