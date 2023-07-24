@@ -9,14 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@firebase/app": "^0.9.9",
+    "@firebase/app": "^0.9.11",
+    "@firebase/firestore": "^3.12.1",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "bulma": "^0.9.4",
-    "firebase": "^9.21.0",
+    "firebase": "^9.22.1",
     "firebaseui": "^6.0.2",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebaseui": "^6.0.0",
+    "react-hook-form": "^7.45.1",
     "react-router-dom": "^6.8.2",
+    "react-social-login-buttons": "^3.9.1",
     "react-toastify": "^9.1.2"
   },
   "devDependencies": {
