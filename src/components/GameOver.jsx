@@ -3,7 +3,6 @@ import { db } from './firebase-config';
 import { useNavigate } from "react-router-dom";
 import { addScore } from "./firebasefns";
 import '../css/GameOver.css'
-import SignInScreen from "./SignInScreen";
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 
@@ -28,9 +27,8 @@ e.preventDefault()
     return (<div
       className="game-over">
       <h1>Congratulations! You finished in {props.timeDisplay}</h1>
-      <p>{googleUser.displayName}</p> 
-      <SignInScreen setGoogleUser={setGoogleUser}/>
-<div id="loader">Loading...</div>
+      <p>{userData.displayName}</p> 
+      <div id="loader">Loading...</div>
       <form onSubmit={handleSubmit} className="is-flex">
 
       {userData.displayName ? <button type="submit" className="button is-primary" >Add Score</button> : <button type="submit" disabled className="button is-primary" >Add Score</button>}
