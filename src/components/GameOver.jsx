@@ -14,31 +14,31 @@ const GameOver = (props) => {
   const [score, setScore] = useState({
     Name: "",
     Time: props.timeDisplay
-})
+  })
 
   const handleSubmit = (e) => {
-  console.log(score);
-e.preventDefault()
+    console.log(score);
+    e.preventDefault()
     addScore({ ...score, Name: userData.displayName }, props)
     props.setGameOver(false)
     props.reset()
     navigate(`/leaderboard/${props.title}`)
-}
-    return (<div
-      className="game-over">
-      <h1>Congratulations! You finished in {props.timeDisplay}</h1>
-      <p>{userData.displayName}</p> 
-      <div id="loader">Loading...</div>
-      <form onSubmit={handleSubmit} className="is-flex">
+  }
+  return (<div
+    className="game-over">
+    <h1>Congratulations! You finished in {props.timeDisplay}</h1>
+    <p>{userData.displayName}</p>
+    <div id="loader">Loading...</div>
+    <form onSubmit={handleSubmit} className="is-flex">
 
       {userData.displayName ? <button type="submit" className="button is-primary" >Add Score</button> : <button type="submit" disabled className="button is-primary" >Add Score</button>}
     </form>
-      <button id="reset" className="button is-primary"
-        onClick={props.handleClick}
-        type="button"
-      >
-        Exit
-      </button>
+    <button id="reset" className="button is-primary"
+      onClick={props.handleClick}
+      type="button"
+    >
+      Exit
+    </button>
     <GoogleLoginButton
       onClick={async () => {
         let user = await signInWithPopup(getAuth(), new GoogleAuthProvider())
@@ -59,6 +59,6 @@ e.preventDefault()
           setUserData(user.user)
       }}
     />
-    </div>)
-  }
-  export default GameOver;
+  </div>)
+}
+export default GameOver;
