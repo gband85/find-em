@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
 import { db } from './firebase-config';
 import { useNavigate } from "react-router-dom";
 import { addScore } from "./firebasefns";
