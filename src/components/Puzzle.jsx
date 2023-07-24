@@ -39,19 +39,10 @@ const Puzzle = (props) => {
     display: "none",
   });
   const [selection, setSelection] = useState();
-  const [gameOver,setGameOver]=useState(true)
+  const [gameOver,setGameOver]=useState(false)
   const [timeDisplay,setTimeDisplay] = useState("00:00:00")
   const [isRunning,setIsRunning] = useState(true)
-  useEffect(()=>{
-    reset(puzzle.title)
-    let newchars2 = puzzle.chars.map((char) => {
 
-      return { ...char, found: false }
-    });
-    setPuzzle({ ...puzzle, chars: newchars2 });
-    setGameOver(false)
-    setIsRunning(true)
-  },[])
     //Check on every render if all characters are found
     useEffect(()=>{
       if (puzzle.chars.every(char=>char.found===true)){
@@ -137,12 +128,11 @@ navigate('/')
  // console.log(puzzle);
   return (
     <>
-      
-      <div className="puzzle">
-      {gameOver ?  <div className="overlay"></div> : null}
+           <div className="puzzle">
+           {gameOver ? <div className="overlay" ></div>: null}
 
-        {
-      gameOver ? <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={()=>reset(puzzle.title)}/> : null}
+        
+      {gameOver ?  <GameOver handleClick={handleClick} title={puzzle.title} timeDisplay={timeDisplay} setGameOver={setGameOver} reset={()=>reset(puzzle.title)} gameOver={gameOver} /> :  null}
         <GameTimer  isRunning={isRunning}
                                     gameOver={gameOver}
                   setTimeDisplay={setTimeDisplay}
@@ -197,4 +187,4 @@ navigate('/')
   )
 }
 
-export default Puzzle;
+export default Puzzle;  
