@@ -1,8 +1,6 @@
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-//import {initializeApp} from 'firebase/app';
-//import {getFirestore} from 'firebase/firestore'
+ 
+import { initializeApp } from 'firebase/app';
+ import { getFirestore} from 'firebase/firestore'
 /**
  * To find your Firebase config object:
  * 
@@ -20,7 +18,7 @@ const firebaseConfig = {
   messagingSenderId: "352900682612",
   appId: "1:352900682612:web:80d7c715cfe7f9788d1221"
 };
-  console.log(firebase)
+ // console.log(firebase)
   export function getFirebaseConfig() {
 
     if (!firebaseConfig || !firebaseConfig.apiKey) {
@@ -31,5 +29,7 @@ const firebaseConfig = {
     }
   }
   
-const firebaseApp = firebase.initializeApp(getFirebaseConfig());
-export const db= firebaseApp.firestore;
+const firebaseApp = initializeApp(getFirebaseConfig());
+const db =  getFirestore(firebaseApp);
+export {db}
+
