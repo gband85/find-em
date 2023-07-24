@@ -1,20 +1,15 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import {addDoc,collection,getDocs} from 'firebase/firestore';
 import { db } from "./firebase-config";
-//import { getAuth, signInAnonymously } from "firebase/auth";
 
 
-
-
-export const addScore=async (score,props)=>{
+const addScore=async (score,props)=>{
   //  e.preventDefault()
 // Initialize the FirebaseUI Widget using Firebase.
 // var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 
     try {
-        const docRef = await addDoc(firestore.collection(db, "scoreList",props.title,"scores"), 
+        const docRef = await addDoc(collection(db, "scoreList",props.title,"scores"), 
           {...score});
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
@@ -22,7 +17,7 @@ export const addScore=async (score,props)=>{
       }
 }
 
-export async function getScores(puzzleTitle) {
+async function getScores(puzzleTitle) {
     // const scoresCol=
     console.log(puzzleTitle);
   let scoreSnapshot= await getDocs(collection(db,'scoreList',puzzleTitle,'scores'))
@@ -40,3 +35,5 @@ return scoreSnapshot.docs.map((doc)=>({...doc.data(),id:doc.id})).sort((a,b)=>{
   return 0
 })
 }
+
+export {addScore,getScores}
