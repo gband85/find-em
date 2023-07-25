@@ -28,7 +28,6 @@ const GameOver = (props) => {
     className="game-over">
     <h1>Congratulations! You finished in {props.timeDisplay}</h1>
     <p>{userData.displayName}</p>
-    <div id="loader">Loading...</div>
     <form onSubmit={handleSubmit} className="is-flex">
 
       {userData.displayName ? <button type="submit" className="button is-primary" >Add Score</button> : <button type="submit" disabled className="button is-primary" >Add Score</button>}
@@ -42,21 +41,18 @@ const GameOver = (props) => {
     <GoogleLoginButton
       onClick={async () => {
         let user = await signInWithPopup(getAuth(), new GoogleAuthProvider())
-        if (user.user.displayName == null) {
-          setUserData({ ...user.user, displayName: "Anonymous Coward" })
-        }
-        else
-          setUserData(user.user)
+        console.log(user.user)
+
+        setUserData({ ...user.user, displayName: `${user.user.email.split('@')[0]}` })
+
       }}
     />
     <GithubLoginButton
       onClick={async () => {
         let user = await signInWithPopup(getAuth(), new GithubAuthProvider())
-        if (user.user.displayName == null) {
-          setUserData({ ...user.user, displayName: "Anonymous Coward" })
-        }
-        else
-          setUserData(user.user)
+        console.log(user.user)
+          setUserData({ ...user.user, displayName: `${user.user.email.split('@')[0]}` })
+
       }}
     />
   </div>)
