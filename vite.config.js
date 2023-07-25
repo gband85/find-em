@@ -4,7 +4,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/find-em/",
+  base: "/projects/find-em/",
   plugins: 
   [
     react(),
