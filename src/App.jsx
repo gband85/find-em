@@ -74,7 +74,7 @@ function App() {
           ]
         }
     ],{
-      // basename: "/projects/find-em"
+      basename: "/projects/find-em"
     }
     )
     
