@@ -1,5 +1,6 @@
 import { forwardRef, useRef, useState } from "react";
 import { Outlet, Link, useMatches, useRouteLoaderData, NavLink } from "react-router-dom";
+import { v4 as uuid } from 'uuid';
 import GameTimer from "./GameTimer";
 import '../css/Root.css'
 
@@ -40,7 +41,7 @@ setActive(!active)
                 
                   
                     {data.chars.map((char) => {
-                      return <a className="navbar-item">{char.name}</a>;
+                      return <a className="navbar-item" key={uuid()}>{char.name}</a>;
                     })}
                   
                 

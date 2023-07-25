@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuid } from 'uuid';
 import { Link, NavLink, Outlet, useLoaderData } from 'react-router-dom';
 
 function LeaderboardLayout() {
@@ -9,7 +10,7 @@ function LeaderboardLayout() {
     <div className="columns" id='leader-list'>
     {puzzles.map((puzzle) => {
       return (
-        <div className='column'>
+        <div className='column' key={uuid()}>
           <NavLink
             className={({isActive,isPending})=>
                         isActive ? "active-image":""

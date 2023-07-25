@@ -22,8 +22,8 @@ function Leaderboard() {
         <tbody>
 
           {scores ? scores.map((score) => (
-            <tr>
-              <td key={score.id}>
+            <tr key={score.id}>
+              <td>
                 {score.Name}
               </td>
               <td >
